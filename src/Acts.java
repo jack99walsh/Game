@@ -2,26 +2,26 @@ import java.util.*;
 
 public class Acts {
 
-  public String titleCard;
+  public String actCard;
   public String partCard;
   public List<String> response;
   public List<String> script;
 
   public Acts(){
-    titleCard = "";
+    actCard = "";
     partCard = "";
     response = new ArrayList();
     script = new ArrayList();
   }
-  public Acts(String t, String p, ArrayList r, ArrayList s){
-    titleCard = t;
+  public Acts(String a, String p, ArrayList r, ArrayList s){
+    actCard = a;
     partCard = p;
     response = r;
     script = s;
   }
 
-  public String getTitleCard(){
-    return titleCard;
+  public String getActCard(){
+    return actCard;
   }
   public String getPartCard(){
     return partCard;

@@ -6,37 +6,50 @@ public class Main {
   public static ArrayList script = new ArrayList();
   public static String input;
   public static Parts A1P1 = new Parts("Act 1", "Part 1", responses, script);
+  public static Character player = new Character();
 
   public static void main (String[] args){
-
     //Act 1: Part 1
     responses.add("You wake up, cold and confused. You are disoriented and unsure of where you are. You look around discover you are in a cinderblock basement.");
-    responses.add("You try to get up, but discover you are naked your hands are bound.");
+    responses.add("You try to get up, but discover you are naked your hands are bound by ropes.");
+    responses.add("After looking around for a while you discover a short rusty blade.");
+    responses.add("It appears that if you try to cut the ropes with the knife you may cut yourself on accident.");
     //End of Act 1: Part 1
 
     Scanner in = new Scanner(System.in);
+    System.out.println("What is your name?");
+    String name = in.nextLine();
+    System.out.println("Your name is " + name + ". Is this correct?");
+    input = in.nextLine();
+    //check if name is good
+
 
     //Begin Act1: Part 1 Code
+    System.out.println(A1P1.getActCard());
+    try {Thread.sleep(200);} catch (InterruptedException ex){}
+    System.out.println(A1P1.getPartCard());
+    try {Thread.sleep(200);} catch (InterruptedException ex){}
+
     System.out.println(A1P1.getResponses(0));
-    /*try {
-        Thread.sleep(4500);
-    }
-    catch (InterruptedException ex) {
-    }*/
+    try {Thread.sleep(4500);} catch (InterruptedException ex){}
     System.out.println(A1P1.getResponses(1));
     input = in.nextLine();
-    boolean cont = false;
     //System.out.println(input.toLowerCase().indexOf("dildo"));
-    while (cont = false) {
-      if (input.toLowerCase().indexOf("pockets") <= -1){
-        System.out.println("You can't do that.");
-        continue;
-      }
-      else if (input.toLowerCase().indexOf("pockets") >= 0) {
+    for (int i = 0; i < i + 1; i++) {
+      if (input.toLowerCase().indexOf("pockets") >= 0) {
         System.out.println("You are naked, remember?");
+        input = in.nextLine();
+      }
+      else if (input.toLowerCase().indexOf("look for") >= 0 && input.toLowerCase().indexOf("knife") >= 0 && input.toLowerCase().indexOf("sharp") >= 0 && input.toLowerCase().indexOf("blade") >= 0) {
+        System.out.println();
         break;
       }
+      else {
+          System.out.println("You can't do that.");
+          input = in.nextLine();
+      }
     }
+
     //End Act 1: Part 1 Code
   }
 }
