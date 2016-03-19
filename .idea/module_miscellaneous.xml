@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="module_miscellaneous" default="compile.module.miscellaneous">
+  <dirname property="module.miscellaneous.basedir" file="${ant.file.module_miscellaneous}"/>
+  
+  <property name="module.jdk.home.miscellaneous" value="${project.jdk.home}"/>
+  <property name="module.jdk.bin.miscellaneous" value="${project.jdk.bin}"/>
+  <property name="module.jdk.classpath.miscellaneous" value="${project.jdk.classpath}"/>
+  
+  <property name="compiler.args.miscellaneous" value="-encoding UTF-8 -source 8 ${compiler.args}"/>
+  
+  <property name="miscellaneous.output.dir" value="${module.miscellaneous.basedir}/../../../../../production/Miscellaneous/output"/>
+  <property name="miscellaneous.testoutput.dir" value="${module.miscellaneous.basedir}/../../../../../test/Miscellaneous/output"/>
+  
+  <path id="miscellaneous.module.bootclasspath">
+    <!-- Paths to be included in compilation bootclasspath -->
+  </path>
+  
+  <path id="miscellaneous.module.production.classpath">
+    <path refid="${module.jdk.classpath.miscellaneous}"/>
+  </path>
+  
+  <path id="miscellaneous.runtime.production.module.classpath">
+    <pathelement location="${miscellaneous.output.dir}"/>
+  </path>
+  
+  <path id="miscellaneous.module.classpath">
+    <path refid="${module.jdk.classpath.miscellaneous}"/>
+    <pathelement location="${miscellaneous.output.dir}"/>
+  </path>
+  
+  <path id="miscellaneous.runtime.module.classpath">
+    <pathelement location="${miscellaneous.testoutput.dir}"/>
+    <pathelement location="${miscellaneous.output.dir}"/>
+  </path>
+  
+  
+  <patternset id="excluded.from.module.miscellaneous">
+    <patternset refid="ignored.files"/>
+  </patternset>
+  
+  <patternset id="excluded.from.compilation.miscellaneous">
+    <patternset refid="excluded.from.module.miscellaneous"/>
+  </patternset>
+  
+  <path id="miscellaneous.module.sourcepath">
+    <dirset dir="${module.miscellaneous.basedir}/../../Miscellaneous">
+      <include name="src"/>
+    </dirset>
+  </path>
+  
+  
+  <target name="compile.module.miscellaneous" depends="compile.module.miscellaneous.production,compile.module.miscellaneous.tests" description="Compile module Miscellaneous"/>
+  
+  <target name="compile.module.miscellaneous.production" depends="register.custom.compilers" description="Compile module Miscellaneous; production classes">
+    <mkdir dir="${miscellaneous.output.dir}"/>
+    <javac2 destdir="${miscellaneous.output.dir}" debug="${compiler.debug}" nowarn="${compiler.generate.no.warnings}" memorymaximumsize="${compiler.max.memory}" fork="true" executable="${module.jdk.bin.miscellaneous}/javac">
+      <compilerarg line="${compiler.args.miscellaneous}"/>
+      <bootclasspath refid="miscellaneous.module.bootclasspath"/>
+      <classpath refid="miscellaneous.module.production.classpath"/>
+      <src refid="miscellaneous.module.sourcepath"/>
+      <patternset refid="excluded.from.compilation.miscellaneous"/>
+    </javac2>
+    
+    <copy todir="${miscellaneous.output.dir}">
+      <fileset dir="${module.miscellaneous.basedir}/../src">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
+    </copy>
+  </target>
+  
+  <target name="compile.module.miscellaneous.tests" depends="register.custom.compilers,compile.module.miscellaneous.production" description="compile module Miscellaneous; test classes" unless="skip.tests"/>
+  
+  <target name="clean.module.miscellaneous" description="cleanup module">
+    <delete dir="${miscellaneous.output.dir}"/>
+    <delete dir="${miscellaneous.testoutput.dir}"/>
+  </target>
+</project>
