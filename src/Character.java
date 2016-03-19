@@ -5,6 +5,7 @@ public class Character {
   private int attack;
   private int speed;
   private int evasion;
+  private int currentHP;
 
   public Character(){
     name = "";
@@ -13,6 +14,7 @@ public class Character {
     attack = 5;
     speed = 10;
     evasion = 0;
+    currentHP = 100;
   }
 
   public Character(String n, int h, int d, int a, int s, int e){
@@ -22,6 +24,7 @@ public class Character {
     attack = a;
     speed = s;
     evasion = e;
+    currentHP = h;
   }
 
   public String getName(){
@@ -42,6 +45,9 @@ public class Character {
   public int getEvasion(){
     return evasion;
   }
+  public int getCurrentHP(){
+    return currentHP;
+  }
 
   public void setName(String n){
     name = n;
@@ -61,6 +67,8 @@ public class Character {
   public void setEvasion(int e){
     evasion = e;
   }
-
+  public void setCurrentHP(int h){
+    currentHP = h;
+  }
 
 }
