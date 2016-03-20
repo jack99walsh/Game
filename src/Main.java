@@ -10,12 +10,16 @@ public class Main {
 
   public static void main (String[] args){
     //Act 1: Part 1
-    responses11.add("You wake up, cold and confused. You are disoriented and unsure of where you are. You look around discover you are in a cinderblock basement.");
+/*0*/ responses11.add("You wake up, cold and confused. You are disoriented and unsure of where you are. You look around discover you are in a cinderblock basement.");
     responses11.add("You try to get up, but discover you are naked your hands are bound by ropes.");
     responses11.add("After looking around for a while you discover a short rusty blade.");
     responses11.add("It appears that if you try to cut the ropes with the knife you may cut yourself on accident.");
     responses11.add("Will you try to cut the ropes?");
     //End of Act 1: Part 1
+  /*  System.out.println(A1P1.getResponses(5));
+    System.out.println();
+    player.takeDam(5);
+    System.out.println(A1P1.getResponses(6)); */
 
     Scanner in = new Scanner(System.in);
     System.out.println("What is your name?");
@@ -47,7 +51,6 @@ public class Main {
         input = in.nextLine();
       }
       else if ((input.toLowerCase().indexOf("look for") >= 0 || input.toLowerCase().indexOf("search for") >= 0 || input.toLowerCase().indexOf("try to find") >= 0) && (input.toLowerCase().indexOf("knife") >= 0 || input.toLowerCase().indexOf("sharp") >= 0 || input.toLowerCase().indexOf("blade") >= 0)) {
-        System.out.println();
         break;
       }
       else {
@@ -63,9 +66,21 @@ public class Main {
     System.out.println(A1P1.getResponses(4));
     input = in.nextLine();
     if (input.toLowerCase().equals("yes") || input.toLowerCase().equals("y")){
-      //finish this statement
+      double prob = Math.random() * 10;
+      if (prob >= 0 && prob <= 5){
+        player.takeDam(5);
+        System.out.println("You cut the ropes after some struggling, but you accidentally cut yourself in the process. | -5 hp. You now have " + player.getCurrentHP() + " / " + player.getHP() + ". |"); //not a response because it was nearly impossible to implement as one
+      }
+      else if (prob >= 6){
+        System.out.println("You successfully cut the ropes without hurting yourself. | Your HP stays at " + player.getCurrentHP() + ". |"); //Not a response as to keep consistent through if-else statements
+      }
     }
-
+    else if (input.toLowerCase().equals("no") || input.toLowerCase().equals("n")){
+      System.out.println("You do not try to cut the ropes. You still need to find a way to break the ropes.");
+    }
+    else{
+      System.out.println("That is not an acceptable answer.");
+    }
     //End Act 1: Part 1 Code
   }
 }

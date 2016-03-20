@@ -70,5 +70,8 @@ public class Character {
   public void setCurrentHP(int h){
     currentHP = h;
   }
+  public void takeDam(int h){
+    currentHP -= h;
+  }
 
 }
